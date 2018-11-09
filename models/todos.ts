@@ -1,8 +1,8 @@
 const todos = [
   {
     id: 1,
-    title: 'Demo',
-    description: 'A Demo todo'
+    text: 'Demo',
+    completed: false
   }
 ];
 
