@@ -14,9 +14,18 @@ const todos = (): Todo[] => {
   return [...todoItems];
 };
 
+const search = (_: object, args: any): Todo[] => {
+  const items = todoItems.filter((item: Todo) =>
+    item.text.includes(args.filter)
+  );
+
+  return items;
+};
+
 const Query = {
   todo,
-  todos
+  todos,
+  search
 };
 
 export default Query;
