@@ -1,10 +1,5 @@
 import todoItems from '../models/todos';
-
-type Todo = {
-  id: number;
-  text: string;
-  completed: boolean;
-};
+import { Todo } from '../types';
 
 const todo = (_: object, { id }: { id: number }): Todo => {
   const item = todoItems.find(todo => todo.id === id);
@@ -13,7 +8,7 @@ const todo = (_: object, { id }: { id: number }): Todo => {
   return item;
 };
 
-const todos = (_: object, { id }: { id: number }): Object[] => {
+const todos = (): Todo[] => {
   return [...todoItems];
 };
 

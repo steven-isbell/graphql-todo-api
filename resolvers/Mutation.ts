@@ -1,7 +1,9 @@
 import todoItems from '../models/todos';
+import { Todo } from '../types';
+
 let id = 1;
 
-const addTodo = (_: object, { text }: { text: string }) => {
+const addTodo = (_: object, { text }: { text: string }): Todo[] => {
   id++;
   const todo = {
     id,
@@ -13,7 +15,7 @@ const addTodo = (_: object, { text }: { text: string }) => {
   return todoItems;
 };
 
-const completeTodo = (_: object, { id }: { id: number }) => {
+const completeTodo = (_: object, { id }: { id: number }): string => {
   const item = todoItems.find(item => item.id === id);
   if (!item) {
     throw new Error(`No Item Matching ID: ${id}`);
