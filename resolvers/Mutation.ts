@@ -18,7 +18,7 @@ const addTodo = (_: object, args: any): Todo[] => {
 };
 
 const completeTodo = (_: object, args: any): string => {
-  const item = todoItems.find(item => item.id === args.id);
+  const item = todoItems.find((item: Todo) => item.id === args.id);
   if (!item) {
     throw new Error(`No Item Matching ID: ${args.id}`);
   }
