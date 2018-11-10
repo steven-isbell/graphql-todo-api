@@ -1,11 +1,24 @@
-import todos from '../models/todos';
+import todoItems from '../models/todos';
 
-const todo = (_: object, { id }: { id: number }) => {
-  return todos.find(todo => todo.id === +id);
+type Todo = {
+  id: number;
+  text: string;
+  completed: boolean;
+};
+
+const todo = (_: object, { id }: { id: number }): Todo => {
+  const item = todoItems.find(todo => todo.id === +id);
+  if (item) return item;
+  else throw new Error(`No Item Matching ID: ${id}`);
+};
+
+const todos = (_: object, { id }: { id: number }): Object[] => {
+  return [...todoItems];
 };
 
 const Query = {
-  todo
+  todo,
+  todos
 };
 
 export default Query;
