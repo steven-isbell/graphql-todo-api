@@ -3,11 +3,13 @@ import { Todo } from '../types';
 
 let id = 1;
 
-const addTodo = (_: object, { text }: { text: string }): Todo[] => {
+// compilation fails if typing properies on objects
+// https://github.com/DefinitelyTyped/DefinitelyTyped/issues/21359
+const addTodo = (_: object, args: any): Todo[] => {
   id++;
   const todo = {
     id,
-    text,
+    text: args.text,
     completed: false
   };
   todoItems.push(todo);
@@ -15,10 +17,10 @@ const addTodo = (_: object, { text }: { text: string }): Todo[] => {
   return todoItems;
 };
 
-const completeTodo = (_: object, { id }: { id: number }): string => {
-  const item = todoItems.find(item => item.id === id);
+const completeTodo = (_: object, args: any): string => {
+  const item = todoItems.find(item => item.id === args.id);
   if (!item) {
-    throw new Error(`No Item Matching ID: ${id}`);
+    throw new Error(`No Item Matching ID: ${args.id}`);
   }
   item.completed = true;
 
