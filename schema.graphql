@@ -5,7 +5,7 @@ type Todo {
 }
 
 type Query {
-  todo(id: ID!): ID
+  todo(id: ID!): Todo
   todos: [Todo]!
   search(filter: String!): [Todo]!
 }
