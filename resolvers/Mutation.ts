@@ -12,7 +12,7 @@ const addTodo = (_: object, args: any): Todo[] => {
     text: args.text,
     completed: false
   };
-  todoItems.concat(todo);
+  todoItems.push(todo);
 
   return todoItems;
 };
