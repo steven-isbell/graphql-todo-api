@@ -27,9 +27,19 @@ const completeTodo = (_: object, args: any): string => {
   return `${item.text} has been completed!`;
 };
 
+const deleteTodo = (_: object, args: any): Todo[] => {
+  for (let i = todoItems.length - 1; i >= 0; i--) {
+    if (todoItems[i].id === +args.id) {
+      todoItems.splice(i, 1);
+    }
+  }
+  return todoItems;
+};
+
 const Mutation = {
   addTodo,
-  completeTodo
+  completeTodo,
+  deleteTodo
 };
 
 export default Mutation;
