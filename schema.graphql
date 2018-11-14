@@ -12,6 +12,6 @@ type Query {
 
 type Mutation {
   addTodo(text: String!): [Todo!]!
-  completeTodo(id: ID!): String!
+  completeTodo(id: ID!): [Todo]!
   deleteTodo(id: ID!): [Todo]!
 }

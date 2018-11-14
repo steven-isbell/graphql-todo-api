@@ -17,14 +17,15 @@ const addTodo = (_: object, args: any): Todo[] => {
   return todoItems;
 };
 
-const completeTodo = (_: object, args: any): string => {
-  const item = todoItems.find((item: Todo) => item.id === args.id);
+const completeTodo = (_: object, args: any): Todo[] => {
+  const item = todoItems.find((item: Todo) => item.id === +args.id);
+
   if (!item) {
     throw new Error(`No Item Matching ID: ${args.id}`);
   }
-  item.completed = true;
+  item.completed = !item.completed;
 
-  return `${item.text} has been completed!`;
+  return todoItems;
 };
 
 const deleteTodo = (_: object, args: any): Todo[] => {
