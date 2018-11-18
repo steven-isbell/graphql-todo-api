@@ -14,7 +14,9 @@
   "dependencies": {
     "@types/aws-lambda": "^8.10.15",
     "@types/node": "^10.12.5",
+    "@types/redis": "^2.8.7",
     "@types/ws": "^6.0.1",
-    "graphql-yoga": "^1.16.7"
+    "graphql-yoga": "^1.16.7",
+    "redis": "^2.8.0"
   }
 }
