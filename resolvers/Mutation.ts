@@ -1,4 +1,3 @@
-import todoItems from '../models/todos';
 import { Todo } from '../types';
 import client from '../client';
 
