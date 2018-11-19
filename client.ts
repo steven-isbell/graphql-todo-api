@@ -9,3 +9,5 @@ client.on('connect', () => {
 client.on('error', err => {
   throw new Error(err);
 });
+
+export default client;
