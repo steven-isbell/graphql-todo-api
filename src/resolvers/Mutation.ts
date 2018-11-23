@@ -1,5 +1,5 @@
 import Todo from '../types/Todo';
-import client from '../client';
+import client from '../utils/client';
 
 const todoItems: Todo[] = [];
 
