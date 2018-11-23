@@ -1,6 +1,6 @@
 import { GraphQLServer } from 'graphql-yoga';
 
-import resolvers from './resolvers/index';
+import resolvers from './resolvers';
 
 const options = {
   port: 3001,
