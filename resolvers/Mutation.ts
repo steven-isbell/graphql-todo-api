@@ -1,6 +1,8 @@
 import { Todo } from '../types';
 import client from '../client';
 
+const todoItems: Todo[] = [];
+
 let id = 1;
 
 // compilation fails if typing properies on objects
