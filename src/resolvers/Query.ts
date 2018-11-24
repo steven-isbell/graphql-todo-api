@@ -1,4 +1,5 @@
 import Todo from '../types/Todo';
+import Context from '../types/Context';
 
 const todoItems: Todo[] = [];
 
@@ -11,7 +12,7 @@ const todo = (_: object, args: any): Todo => {
   return item;
 };
 
-const todos = (): Todo[] => {
+const todos = (_: object, args: any, ctx: Context): Todo[] => {
   return [...todoItems];
 };
 
