@@ -1,31 +1,43 @@
-import { GraphQLServer } from 'graphql-yoga';
-import session from 'express-session';
+import { ApolloServer, makeExecutableSchema } from 'apollo-server-express';
 import dotenv from 'dotenv';
+import express from 'express';
+import cors from 'cors';
+import compression from 'compression';
+import helmet from 'helmet';
+import session from 'express-session';
 
 import resolvers from './resolvers';
+import typeDefs from './typeDefs/typeDefs';
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
-const options = {
-  port: 3001,
-  endpoint: '/graphql',
-  playground: '/graphiql',
-  cors: {
-    credentials: true
-  }
-};
+const schema = makeExecutableSchema({ resolvers, typeDefs });
 
-const server = new GraphQLServer({
-  typeDefs: './schema.graphql',
-  resolvers,
-  context: req => ({
-    ...req.request
-  })
+const server = new ApolloServer({
+  schema,
+  context: ({ req }: { req: object }) => ({
+    ...req
+  }),
+  playground: {
+    settings: {
+      'general.betaUpdates': false,
+      'request.credentials': 'include',
+      'editor.theme': 'dark',
+      'editor.reuseHeaders': true,
+      'tracing.hideTracingResponse': true,
+      'editor.fontSize': 16,
+      'editor.fontFamily': `'Source Code Pro', 'Consolas', 'Inconsolata', 'Droid Sans Mono', 'Monaco', monospace`
+    }
+  }
 });
 
 const secret = process.env.SESSION_SECRET || 'abcd';
 
-server.express.use(
+const app = express();
+app.use(cors());
+app.use(helmet());
+app.use(compression());
+app.use(
   session({
     secret,
     resave: true,
@@ -37,6 +49,8 @@ server.express.use(
   })
 );
 
-server.start(options, () =>
-  console.log(`Server is running on localhost:${options.port}`)
-);
+server.applyMiddleware({ app, path: '/graphql' });
+
+const port = 3001;
+
+app.listen(port, () => console.log(`Server is running on localhost:${port}`));
