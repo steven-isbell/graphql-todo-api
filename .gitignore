@@ -3,3 +3,7 @@ node_modules/
 
 # compiled
 lib/
+
+#env
+.env.production
+.env.development

@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "watch": "concurrently --kill-others \"tsc -w\" \"nodemon lib/index.js\""
+    "watch": "NODE_ENV=development concurrently --kill-others \"tsc -w\" \"nodemon lib/index.js\""
   },
   "devDependencies": {
     "concurrently": "^4.0.1",

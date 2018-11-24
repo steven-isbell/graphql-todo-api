@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 
 import resolvers from './resolvers';
 
-dotenv.config();
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 const options = {
   port: 3001,
