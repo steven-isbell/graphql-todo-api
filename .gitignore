@@ -7,3 +7,6 @@ lib/
 #env
 .env.production
 .env.development
+
+#redis
+dump.rdb
