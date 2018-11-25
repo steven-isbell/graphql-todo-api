@@ -61,6 +61,13 @@ app.use(
     }
   })
 );
+app.use((req: any, res: any, next: any) => {
+  if (req.session.todos) next();
+  else {
+    req.session.todos = [];
+    next();
+  }
+});
 
 server.applyMiddleware({ app, path: '/graphql' });
 

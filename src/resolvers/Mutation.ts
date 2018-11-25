@@ -1,27 +1,26 @@
+import Context from '../types/Context';
 import Todo from '../types/Todo';
-import client from '../utils/client';
-
-const todoItems: Todo[] = [];
-
-let id: number = 1;
 
 // compilation fails if typing properies on objects
 // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/21359
-const addTodo = (_: object, args: any): Todo[] => {
-  id++;
+const addTodo = (_: object, args: any, ctx: Context): Todo[] => {
+  const {
+    session: { todos }
+  } = ctx;
+  const id = todos[todos.length - 1] ? todos[todos.length - 1].id + 1 : 1;
   const todo: Todo = {
     id,
     text: args.text,
     completed: false
   };
 
-  todoItems.push(todo);
+  ctx.session.todos.push(todo);
 
-  return todoItems;
+  return ctx.session.todos;
 };
 
-const completeTodo = (_: object, args: any): Todo[] => {
-  const item: Todo | undefined = todoItems.find(
+const completeTodo = (_: object, args: any, ctx: Context): Todo[] => {
+  const item: Todo | undefined = ctx.session.todos.find(
     (item: Todo) => item.id === +args.id
   );
 
@@ -31,16 +30,19 @@ const completeTodo = (_: object, args: any): Todo[] => {
 
   item.completed = !item.completed;
 
-  return todoItems;
+  return ctx.session.todos;
 };
 
-const deleteTodo = (_: object, args: any): Todo[] => {
-  for (let i: number = todoItems.length - 1; i >= 0; i--) {
-    if (todoItems[i].id === +args.id) {
-      todoItems.splice(i, 1);
+const deleteTodo = (_: object, args: any, ctx: Context): Todo[] => {
+  const {
+    session: { todos }
+  } = ctx;
+  for (let i: number = todos.length - 1; i >= 0; i--) {
+    if (todos[i].id === +args.id) {
+      todos.splice(i, 1);
     }
   }
-  return todoItems;
+  return todos;
 };
 
 const Mutation = {
