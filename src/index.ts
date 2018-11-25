@@ -5,9 +5,12 @@ import cors from 'cors';
 import compression from 'compression';
 import helmet from 'helmet';
 import session from 'express-session';
+import connect from 'connect-redis';
 
 import resolvers from './resolvers';
 import typeDefs from './typeDefs/typeDefs';
+
+import client from './utils/client';
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
@@ -31,7 +34,12 @@ const server = new ApolloServer({
   }
 });
 
-const secret = process.env.SESSION_SECRET || 'abcd';
+const {
+  SESSION_SECRET = 'abcd',
+  REDIS_HOST = 'localhost',
+  REDIS_PORT = 6379
+} = process.env;
+const RedisStore = connect(session);
 
 const app = express();
 app.use(cors());
@@ -39,7 +47,12 @@ app.use(helmet());
 app.use(compression());
 app.use(
   session({
-    secret,
+    store: new RedisStore({
+      host: REDIS_HOST,
+      port: +REDIS_PORT,
+      client
+    }),
+    secret: SESSION_SECRET,
     resave: true,
     saveUninitialized: true,
     cookie: {
