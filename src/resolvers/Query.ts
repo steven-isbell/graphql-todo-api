@@ -10,7 +10,7 @@ const todo = (_: object, args: any, ctx: Context): Todo => {
   return item;
 };
 
-const todos = (_: object, args: any, ctx: Context): Todo[] => {
+const todos = (_: object, __: any, ctx: Context): Todo[] => {
   return [...ctx.session.todos];
 };
 

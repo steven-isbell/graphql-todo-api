@@ -61,7 +61,7 @@ app.use(
     }
   })
 );
-app.use((req: any, res: any, next: any) => {
+app.use((req: any, _: any, next: any) => {
   if (req.session.todos) next();
   else {
     req.session.todos = [];
