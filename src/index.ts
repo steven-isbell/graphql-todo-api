@@ -42,11 +42,12 @@ const {
 const RedisStore = connect(session);
 
 const app = express();
-app.use(cors());
+app.use(cors({ credentials: true, origin: ['http://localhost:3000'] }));
 app.use(helmet());
 app.use(compression());
 app.use(
   session({
+    name: 'todo-id',
     store: new RedisStore({
       host: REDIS_HOST,
       port: +REDIS_PORT,
@@ -57,7 +58,8 @@ app.use(
     saveUninitialized: true,
     cookie: {
       secure: process.env.NODE_ENV === 'production',
-      maxAge: 86400000
+      maxAge: 86400000,
+      httpOnly: true
     }
   })
 );
