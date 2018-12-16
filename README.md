@@ -2,4 +2,4 @@
 
 A standard todo API to use when testing new frontend tools/frameworks.
 
-Built with GraphQL, GraphQL Yoga, and TypeScript.
+Built with GraphQL, Apollo Server, Redis, and TypeScript.
