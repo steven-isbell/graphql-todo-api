@@ -34,11 +34,7 @@ const server = new ApolloServer({
   }
 });
 
-const {
-  SESSION_SECRET = 'abcd',
-  REDIS_HOST = 'localhost',
-  REDIS_PORT = 6379
-} = process.env;
+const { SESSION_SECRET = '', REDIS_HOST = '', REDIS_PORT = 6379 } = process.env;
 const RedisStore = connect(session);
 
 const app = express();
