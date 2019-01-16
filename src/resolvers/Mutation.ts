@@ -1,7 +1,7 @@
 import Context from '../types/Context';
 import Todo from '../types/Todo';
 
-const uid = () => {
+const uid = (): string => {
   return (
     '_' +
     Math.random()
