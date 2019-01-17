@@ -13,11 +13,10 @@ const uid = (): string => {
 // compilation fails if typing properies on objects
 // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/21359
 const addTodo = (_: object, args: any, ctx: Context): Todo[] => {
-  console.log(ctx.session);
   const {
     session: { todos }
   } = ctx;
-  const id = uid();
+  const id: string = uid();
   const todo: Todo = {
     id,
     text: args.text,

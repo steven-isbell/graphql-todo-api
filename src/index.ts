@@ -34,7 +34,12 @@ const server = new ApolloServer({
   }
 });
 
-const { SESSION_SECRET = '', REDIS_HOST = '', REDIS_PORT = 6379 } = process.env;
+const {
+  SESSION_SECRET = '',
+  REDIS_HOST = '',
+  REDIS_PORT = 6379,
+  SERVER_PORT = 3001
+} = process.env;
 const RedisStore = connect(session);
 
 const app = express();
@@ -69,6 +74,6 @@ app.use((req: any, _: any, next: any) => {
 
 server.applyMiddleware({ app, path: '/graphql' });
 
-const port = 3001;
-
-app.listen(port, () => console.log(`Server is running on localhost:${port}`));
+app.listen(SERVER_PORT, () =>
+  console.log(`Server is running on localhost:${SERVER_PORT}`)
+);
