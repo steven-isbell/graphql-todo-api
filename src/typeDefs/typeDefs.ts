@@ -2,21 +2,21 @@ import { gql } from 'apollo-server-express';
 
 const typeDefs = gql`
   type Todo {
-    id: ID!
+    id: String!
     text: String!
     completed: Boolean!
   }
 
   type Query {
-    todo(id: ID!): Todo
+    todo(id: String!): Todo
     todos: [Todo]!
     search(filter: String!): [Todo]!
   }
 
   type Mutation {
     addTodo(text: String!): [Todo!]!
-    completeTodo(id: ID!): [Todo]!
-    deleteTodo(id: ID!): [Todo]!
+    completeTodo(id: String!): [Todo]!
+    deleteTodo(id: String!): [Todo]!
   }
 `;
 
