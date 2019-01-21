@@ -1,11 +1,11 @@
 import { ApolloServer, makeExecutableSchema } from 'apollo-server-express';
+import compression from 'compression';
+import connect from 'connect-redis';
+import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
-import cors from 'cors';
-import compression from 'compression';
-import helmet from 'helmet';
 import session from 'express-session';
-import connect from 'connect-redis';
+import helmet from 'helmet';
 
 import resolvers from './resolvers';
 import typeDefs from './typeDefs/typeDefs';
