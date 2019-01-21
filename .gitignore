@@ -1,12 +1,13 @@
-# modules
-node_modules/
+# package directories
+node_modules
+jspm_packages
 
-# compiled
-lib/
+# Serverless directories
+.serverless
 
-#env
+# env
 .env.production
 .env.development
 
-#redis
-dump.rdb
+#tsc
+lib/
