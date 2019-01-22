@@ -8,3 +8,9 @@ services:
       NODE_ENV: production
     ports:
       - 3001:3001
+  redis-service:
+    container_name: todo-redis-container
+    image: redis:5.0.3
+    restart: always
+    ports:
+      - 6380:6379
