@@ -2,14 +2,15 @@ version: '3'
 
 services:
   todo-service:
-    image: todo-service
-    build: .
-    command: ["tsc", "node", "lib/index.js"]
+    container_name: todo-service
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
-      NODE_ENV: production
+      NODE_ENV: development
     ports:
       - 3001:3001
-    depends_on: redis
+    links: ["redis-service"]
   redis-service:
     container_name: redis
     image: redis:5.0.3
