@@ -10,8 +10,6 @@ import helmet from 'helmet';
 import resolvers from './resolvers';
 import typeDefs from './typeDefs/typeDefs';
 
-import client from './utils/client';
-
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 const schema = makeExecutableSchema({ resolvers, typeDefs });
@@ -36,8 +34,7 @@ const server = new ApolloServer({
 
 const {
   SESSION_SECRET = '',
-  REDIS_HOST = '',
-  REDIS_PORT = 6379,
+  REDIS_HOST = 'redis-service',
   SERVER_PORT = 3001
 } = process.env;
 const RedisStore = connect(session);
@@ -50,9 +47,7 @@ app.use(
   session({
     name: 'todo-id',
     store: new RedisStore({
-      host: REDIS_HOST,
-      port: +REDIS_PORT,
-      client
+      host: REDIS_HOST
     }),
     secret: SESSION_SECRET,
     resave: true,

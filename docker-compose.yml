@@ -5,7 +5,7 @@ services:
     container_name: todo-service
     build:
       context: .
-      dockerfile: Dockerfile-dev  
+      dockerfile: Dockerfile-dev
     environment:
       NODE_ENV: development
     ports:
