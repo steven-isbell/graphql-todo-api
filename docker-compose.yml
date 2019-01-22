@@ -1,15 +1,17 @@
-version: '2.1'
+version: '3'
 
 services:
   todo-service:
     image: todo-service
     build: .
+    command: ["tsc", "node", "lib/index.js"]
     environment:
       NODE_ENV: production
     ports:
       - 3001:3001
+    depends_on: redis
   redis-service:
-    container_name: todo-redis-container
+    container_name: redis
     image: redis:5.0.3
     restart: always
     ports:
