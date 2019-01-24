@@ -1,5 +1,5 @@
-import Context from '../types/Context';
-import Todo from '../types/Todo';
+import Context from '../@types/Context';
+import Todo from '../@types/Todo';
 
 const uid = (): string => {
   return (

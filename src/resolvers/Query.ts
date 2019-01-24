@@ -1,5 +1,5 @@
-import Context from '../types/Context';
-import Todo from '../types/Todo';
+import Context from '../@types/Context';
+import Todo from '../@types/Todo';
 
 // compilation fails if typing properies on objects
 // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/21359
