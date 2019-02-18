@@ -37,9 +37,11 @@ const {
   REDIS_HOST = 'redis-service',
   SERVER_PORT = 3001
 } = process.env;
+
 const RedisStore = connect(session);
 
 const app = express();
+
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(helmet());
 app.use(compression());
@@ -59,6 +61,7 @@ app.use(
     }
   })
 );
+
 app.use((req: any, _: any, next: Function) => {
   if (req.session.todos) next();
   else {
