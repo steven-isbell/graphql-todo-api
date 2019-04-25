@@ -1,8 +1,10 @@
+import dotenv from 'dotenv';
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
+
 import { ApolloServer, makeExecutableSchema } from 'apollo-server-express';
 import compression from 'compression';
 import connect from 'connect-redis';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import express from 'express';
 import session from 'express-session';
 import helmet from 'helmet';
@@ -10,8 +12,6 @@ import helmet from 'helmet';
 import resolvers from './resolvers';
 import typeDefs from './typeDefs/typeDefs';
 import './connectRedisClient';
-
-dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 const schema = makeExecutableSchema({ resolvers, typeDefs });
 
