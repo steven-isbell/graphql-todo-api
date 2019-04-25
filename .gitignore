@@ -11,3 +11,6 @@ jspm_packages
 
 #tsc
 lib/
+
+# redis
+dump.rdb

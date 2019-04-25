@@ -9,7 +9,7 @@ import helmet from 'helmet';
 
 import resolvers from './resolvers';
 import typeDefs from './typeDefs/typeDefs';
-import 'connectRedisClient';
+import './connectRedisClient';
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
