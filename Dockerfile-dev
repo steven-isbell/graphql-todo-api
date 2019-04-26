@@ -4,7 +4,7 @@ WORKDIR /var/server
 
 COPY . /var/server
 
-RUN npm install -g typescript concurrently nodemon
+RUN npm install -D typescript concurrently nodemon
 
 RUN npm install
 

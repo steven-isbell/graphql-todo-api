@@ -10,7 +10,7 @@ services:
       NODE_ENV: development
     ports:
       - 3001:3001
-    links: ["redis-service"]
+    links: ['redis-service']
   redis-service:
     container_name: redis
     image: redis:5.0.3
